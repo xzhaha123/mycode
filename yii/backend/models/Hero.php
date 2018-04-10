@@ -53,4 +53,9 @@ class Hero extends \common\models\Hero
             'speed' => '移速',
         ];
     }
+
+    public function getSkill()
+    {
+        return $this->hasMany(Skill::className(),['hero_id'=>'id']);
+    }
 }

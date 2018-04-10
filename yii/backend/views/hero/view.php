@@ -41,6 +41,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'def',
             'dps',
             'speed',
+            [
+                'attribute' => '技能',
+                'format'=>'html',
+                'value' => function($data){
+                    if (is_array($data->skill)){
+                        $str = '';
+                        foreach ($data->skill as $value){
+                            $str .= '&nbsp;'.$value->name;
+                        }
+                        return Html::tag('span',substr($str,6));
+                    }
+                }
+            ]
         ],
     ]) ?>
 
