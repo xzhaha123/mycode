@@ -39,18 +39,18 @@ class Hero extends \common\models\Hero
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'type' => 'Type',
-            'str' => 'Str',
-            'int' => 'Int',
-            'dex' => 'Dex',
-            'hp' => 'Hp',
-            'mp' => 'Mp',
-            'min_atk' => 'Min Atk',
-            'max_atk' => 'Max Atk',
-            'def' => 'Def',
-            'dps' => 'Dps',
-            'speed' => 'Speed',
+            'name' => '名字',
+            'type' => '类型',
+            'str' => '力量',
+            'int' => '智力',
+            'dex' => '敏捷',
+            'hp' => '生命值',
+            'mp' => '法力值',
+            'min_atk' => '攻击最小值',
+            'max_atk' => '攻击最大值',
+            'def' => '护甲',
+            'dps' => 'DPS',
+            'speed' => '移速',
         ];
     }
 }
