@@ -20,6 +20,7 @@ use Yii;
  * @property double $def
  * @property int $dps
  * @property int $speed
+ * @property string $pic
  */
 class Hero extends \yii\db\ActiveRecord
 {
@@ -40,7 +41,7 @@ class Hero extends \yii\db\ActiveRecord
             [['name', 'type', 'str', 'int', 'dex', 'hp', 'mp', 'min_atk', 'max_atk', 'def', 'dps', 'speed'], 'required'],
             [['type', 'str', 'int', 'dex', 'hp', 'mp', 'min_atk', 'max_atk', 'dps', 'speed'], 'integer'],
             [['def'], 'number'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'pic'], 'string', 'max' => 255],
         ];
     }
 
@@ -63,6 +64,7 @@ class Hero extends \yii\db\ActiveRecord
             'def' => 'Def',
             'dps' => 'Dps',
             'speed' => 'Speed',
+            'pic' => 'Pic',
         ];
     }
 }

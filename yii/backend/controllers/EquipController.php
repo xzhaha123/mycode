@@ -8,6 +8,7 @@ use backend\models\EquipSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * EquipController implements the CRUD actions for Equip model.
@@ -85,9 +86,15 @@ class EquipController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $pic = $model->pic;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->pic = $pic;
+            $model->imageFile = UploadedFile::getInstance($model, 'pic');
+            if ($model->imageFile) $model->upload();
+            if ($model->save()){
+                if ($pic && $model->imageFile) unlink('uploads/equip/'.$pic);
+                $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('update', [

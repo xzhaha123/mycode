@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\models\Equip;
 
 /**
- * EquipSearch represents the model behind the search form of `app\models\Equip`.
+ * EquipSearch represents the model behind the search form of `backend\models\Equip`.
  */
 class EquipSearch extends Equip
 {
@@ -19,7 +19,7 @@ class EquipSearch extends Equip
     {
         return [
             [['id', 'price'], 'integer'],
-            [['name', 'description', 'level', 'mana', 'sid', 'type'], 'safe'],
+            [['name', 'description', 'level', 'mana', 'sid', 'type', 'pic'], 'safe'],
         ];
     }
 
@@ -68,7 +68,8 @@ class EquipSearch extends Equip
             ->andFilterWhere(['like', 'level', $this->level])
             ->andFilterWhere(['like', 'mana', $this->mana])
             ->andFilterWhere(['like', 'sid', $this->sid])
-            ->andFilterWhere(['like', 'type', $this->type]);
+            ->andFilterWhere(['like', 'type', $this->type])
+            ->andFilterWhere(['like', 'pic', $this->pic]);
 
         return $dataProvider;
     }

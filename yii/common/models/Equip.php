@@ -15,6 +15,7 @@ use Yii;
  * @property int $price
  * @property string $sid 子物品id
  * @property int $type 类型-1-装备，0-卷轴
+ * @property string $pic
  */
 class Equip extends \yii\db\ActiveRecord
 {
@@ -34,8 +35,8 @@ class Equip extends \yii\db\ActiveRecord
         return [
             [['name', 'description', 'mana', 'price', 'type'], 'required'],
             [['price'], 'integer'],
-            [['name', 'description'], 'string', 'max' => 255],
-            [['level', 'mana', 'type'], 'string', 'max' => 4],
+            [['name', 'description', 'pic'], 'string', 'max' => 255],
+            [['level', 'mana', 'type'], 'integer', 'max' => 4],
             [['sid'], 'string', 'max' => 30],
         ];
     }
@@ -54,6 +55,7 @@ class Equip extends \yii\db\ActiveRecord
             'price' => 'Price',
             'sid' => 'Sid',
             'type' => 'Type',
+            'pic' => 'Pic',
         ];
     }
 }

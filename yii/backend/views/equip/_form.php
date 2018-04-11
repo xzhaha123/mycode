@@ -12,6 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?php if ($model->pic): ?>
+
+        <?= "<img src='uploads/equip/$model->pic' width='100px'>" ?>
+
+    <?php endif; ?>
+    <?= $form->field($model, 'pic')->fileInput() ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
@@ -23,6 +30,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'sid')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'type')->dropDownList(\backend\models\Equip::$typeList) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

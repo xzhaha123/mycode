@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\EquipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Equips';
+$this->title = '装备';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equip-index">
@@ -23,8 +23,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            //'id',
+//            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'attribute'=>"pic",
+                'format' => [
+                    'image',
+                    [
+//                        'width'=>'40px',
+                        'height'=>'25px'
+                    ]
+                ],
+                'value' => function ($model) {
+                    return 'uploads/equip/'.$model->pic;
+                }
+            ],
             'name',
             'description',
             'level',
@@ -32,12 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             [
                 'attribute' => 'sid',
-                'value' => function($data){
-                    $sid = empty($data->sid)?'':explode(',',$data->sid);
+                'value' => function($model){
+                    $sid = empty($model->sid)?'':explode(',',$model->sid);
                     $new = '';
                     if (is_array($sid)){
                         foreach ($sid as $value){
-                            $new .= '+'.$data->findOne($value)->name;
+                            $new .= '+'.$model->findOne($value)->name;
                         }
                         $new = substr($new,1);
                     }

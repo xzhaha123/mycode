@@ -33,11 +33,12 @@ class Skill extends \common\models\Skill
         return [
             'id' => 'ID',
             'hero_id' => 'Hero ID',
-            'level' => 'Level',
-            'name' => 'Name',
-            'description' => 'Description',
-            'damage' => 'Damage',
-            'mana' => 'Mana',
+            'level' => '等级',
+            'name' => '名称',
+            'description' => '描述',
+            'damage' => '伤害',
+            'mana' => '法力消耗',
+            'pic' => '图片',
         ];
     }
 }

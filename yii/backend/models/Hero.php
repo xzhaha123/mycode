@@ -51,6 +51,7 @@ class Hero extends \common\models\Hero
             'def' => '护甲',
             'dps' => 'DPS',
             'speed' => '移速',
+            'pic' => '图片',
         ];
     }
 

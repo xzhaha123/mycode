@@ -7,12 +7,12 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Equip */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Equips', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '装备', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equip-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><img src="uploads/equip/<?= $model->pic ?>" height="35px"> <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -28,14 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
             'description',
             'level',
             'mana',
             'price',
             'sid',
-            'type',
+            [
+                'attribute' => 'type',
+                'value' => function($model){
+                    return \backend\models\Equip::$typeList[$model->type];
+                }
+            ]
         ],
     ]) ?>
 

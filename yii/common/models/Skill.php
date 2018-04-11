@@ -14,6 +14,7 @@ use Yii;
  * @property string $description
  * @property int $damage
  * @property int $mana
+ * @property string $pic
  */
 class Skill extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Skill extends \yii\db\ActiveRecord
             [['hero_id', 'level', 'name', 'description', 'damage', 'mana'], 'required'],
             [['hero_id', 'damage', 'mana'], 'integer'],
             [['level'], 'string', 'max' => 4],
-            [['name', 'description'], 'string', 'max' => 255],
+            [['name', 'description', 'pic'], 'string', 'max' => 255],
         ];
     }
 
@@ -51,6 +52,7 @@ class Skill extends \yii\db\ActiveRecord
             'description' => 'Description',
             'damage' => 'Damage',
             'mana' => 'Mana',
+            'pic' => 'Pic',
         ];
     }
 }

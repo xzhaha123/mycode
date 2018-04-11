@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
+    <?= $form->field($model, 'pic')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'id') ?>
 
