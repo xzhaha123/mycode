@@ -23,15 +23,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'hero_id',
+            [
+                'attribute' => 'hero_name',
+                'value' => 'hero.name',
+                'label'=>'英雄名称',
+                'headerOptions' => ['width' => '120'],
+                'filter' => Html::activeTextInput($searchModel, 'hero_name', [
+                    'class' => 'form-control', 'id' => null
+                ]),
+            ],
             'level',
             'name',
             'description',
-            //'damage',
-            //'mana',
+            'damage',
+            'mana',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

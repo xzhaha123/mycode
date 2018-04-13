@@ -12,6 +12,8 @@ use backend\models\Skill;
  */
 class SkillSearch extends Skill
 {
+    public $hero_name;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class SkillSearch extends Skill
     {
         return [
             [['id', 'hero_id', 'damage', 'mana'], 'integer'],
-            [['level', 'name', 'description'], 'safe'],
+            [['level', 'name', 'description','hero_name'], 'safe'],
         ];
     }
 
@@ -42,12 +44,13 @@ class SkillSearch extends Skill
     public function search($params)
     {
         $query = Skill::find();
-
+        $query->joinWith(['hero']);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
 
         $this->load($params);
 
@@ -66,9 +69,9 @@ class SkillSearch extends Skill
         ]);
 
         $query->andFilterWhere(['like', 'level', $this->level])
-            ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
-
+            ->andFilterWhere(['like', 'skill.name', $this->name])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'hero.name', $this->hero_name]);
         return $dataProvider;
     }
 }
