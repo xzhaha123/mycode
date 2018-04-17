@@ -44,7 +44,7 @@ class SkillSearch extends Skill
     public function search($params)
     {
         $query = Skill::find();
-        $query->joinWith(['hero']);
+        $query->joinWith(['hero']); //关联查询
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
