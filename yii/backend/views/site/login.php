@@ -7,7 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
+$this->title = '后台登陆';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -19,12 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'username',['labelOptions'=>['label'=>'用户名']])->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password')->passwordInput()->label('密码') ?>
+
+            <?= $form->field($model, 'rememberMe')->checkbox()->label('记住密码') ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('登陆', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::a('注册', ['signup'],['class' => 'btn btn-info', 'name' => 'signup-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>
