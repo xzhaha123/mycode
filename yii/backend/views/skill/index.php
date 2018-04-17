@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'hero.name',
                 'label'=>'英雄名称',
                 'headerOptions' => ['width' => '120'],
-                'filter' => Html::activeTextInput($searchModel, 'hero_name', [
-                    'class' => 'form-control', 'id' => null
-                ]),
+//                'filter' => Html::activeTextInput($searchModel, 'hero_name', [
+//                    'class' => 'form-control', 'id' => null
+//                ]),
             ],
             'level',
             'name',
