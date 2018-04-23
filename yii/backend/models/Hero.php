@@ -57,6 +57,6 @@ class Hero extends \common\models\Hero
 
     public function getSkill()
     {
-        return $this->hasMany(Skill::className(),['hero_id'=>'id']);
+        return $this->hasMany(Skill::className(),['hero_id'=>'id'])->addGroupBy('name');//@imp根据名字合并
     }
 }

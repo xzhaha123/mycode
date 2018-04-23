@@ -45,7 +45,7 @@ class Skill extends \common\models\Skill
     //表关联
     public function getHero()
     {
-        // hasOne要求返回两个参数 第一个参数是关联表的类名 第二个参数是两张表的关联关系
+        // @imp hasOne要求返回两个参数 第一个参数是关联表的类名 第二个参数是两张表的关联关系
         return $this->hasOne(Hero::className(), ['id' => 'hero_id']);
     }
 }

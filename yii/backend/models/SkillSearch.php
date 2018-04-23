@@ -21,7 +21,7 @@ class SkillSearch extends Skill
     {
         return [
             [['id', 'hero_id', 'damage', 'mana'], 'integer'],
-            [['level', 'name', 'description','hero_name'], 'safe'],
+            [['level', 'name', 'description','hero_name'], 'safe'], //@imp 增加查询需要添加安全搜索
         ];
     }
 
@@ -44,7 +44,7 @@ class SkillSearch extends Skill
     public function search($params)
     {
         $query = Skill::find();
-        $query->joinWith(['hero']); //关联查询
+        $query->joinWith(['hero']); //@imp 关联查询
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -71,7 +71,7 @@ class SkillSearch extends Skill
         $query->andFilterWhere(['like', 'level', $this->level])
             ->andFilterWhere(['like', 'skill.name', $this->name])
             ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'hero.name', $this->hero_name]);
+            ->andFilterWhere(['like', 'hero.name', $this->hero_name]); //@imp 查询功能
         return $dataProvider;
     }
 }

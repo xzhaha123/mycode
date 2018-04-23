@@ -24,12 +24,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
+            /**
+             * @imp 插入图片
+             */
             [
                 'attribute'=>"pic",
                 'format' => [
                     'image',
                     [
-//                        'width'=>'40px',
                         'height'=>'25px'
                     ]
                 ],
@@ -57,6 +59,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             //'type',
+            /**
+             * 下拉框搜索
+             */
             [
                 'attribute' => 'type',
                 'value' => function($data){

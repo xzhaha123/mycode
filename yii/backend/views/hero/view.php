@@ -41,6 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'def',
             'dps',
             'speed',
+            /**
+             * @imp 关联技能表 + groupBy + 传ID
+             */
             [
                 'attribute' => '技能',
                 'format'=>'html',
@@ -48,9 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (is_array($data->skill)){
                         $str = '';
                         foreach ($data->skill as $value){
-                            $str .= '&nbsp;'.$value->name;
+                            $str .= '['.Html::a($value->name,['skill/view','id'=>$value->id]).']&nbsp;&nbsp;';
+
                         }
-                        return Html::tag('span',substr($str,6));
+                        return $str;
                     }
                 }
             ]
