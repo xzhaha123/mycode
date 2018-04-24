@@ -107,6 +107,13 @@ class SiteController extends Controller
         // $model->load() 方法，实质是把post过来的数据赋值给model
         // $model->signup() 方法, 是我们要实现的具体的添加用户操作
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            /**
+             * @imp 信息提示
+             */
+            Yii::$app->getSession()->setFlash('success', '注册成功');
+            /**
+             * @imp 页面跳转
+             */
             return $this->redirect(['index']);
         }
 

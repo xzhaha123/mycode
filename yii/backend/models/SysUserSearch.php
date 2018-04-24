@@ -5,23 +5,21 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Skill;
+use backend\models\SysUser;
 
 /**
- * SkillSearch represents the model behind the search form of `backend\models\Skill`.
+ * SysUserSearch represents the model behind the search form of `backend\models\SysUser`.
  */
-class SkillSearch extends Skill
+class SysUserSearch extends SysUser
 {
-    public $hero_name;
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'hero_id', 'damage', 'mana'], 'integer'],
-            [['level', 'name', 'description','hero_name'], 'safe'], //@imp 增加查询需要添加安全搜索
+            [['id', 'role', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email'], 'safe'],
         ];
     }
 
@@ -43,17 +41,13 @@ class SkillSearch extends Skill
      */
     public function search($params)
     {
-        $query = Skill::find();
-        /**
-         * @imp 关联查询
-         */
-        $query->joinWith(['hero']);
+        $query = SysUser::find();
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
 
         $this->load($params);
 
@@ -66,15 +60,18 @@ class SkillSearch extends Skill
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'hero_id' => $this->hero_id,
-            'damage' => $this->damage,
-            'mana' => $this->mana,
+            'role' => $this->role,
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'level', $this->level])
-            ->andFilterWhere(['like', 'skill.name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'hero.name', $this->hero_name]); //@imp 查询功能
+        $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'email', $this->email]);
+
         return $dataProvider;
     }
 }

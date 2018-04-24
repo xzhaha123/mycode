@@ -22,6 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        /**
+         * @imp 自定义列
+         */
         'columns' => [
             [
                 'attribute' => 'hero_name',

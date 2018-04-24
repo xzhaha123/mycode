@@ -40,6 +40,7 @@ AppAsset::register($this);
         ['label' => '英雄', 'url' => ['/hero/index']],
         ['label' => '装备', 'url' => ['/equip/index']],
         ['label' => '技能', 'url' => ['/skill/index']],
+        ['label' => '用户管理', 'url' => ['/sysuser/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '登陆', 'url' => ['/site/login']];
