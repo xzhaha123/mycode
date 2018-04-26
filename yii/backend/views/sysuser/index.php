@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\SysUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Sys Users';
+$this->title = '用户列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sys-user-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Sys User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加系统用户', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,8 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
             'email:email',
             'role',
-            'status',
-            'created_at',
+            [
+                'attribute' => 'status',
+                'value' => function($model){
+                    return $model->statusList[$model->status];
+                }
+            ],
+            [
+                'attribute' => 'created_at',
+                'value' => function($model){
+                    return date('Y-m-d H:i',$model->created_at);
+                }
+            ],
             //'updated_at',
 
             [
@@ -35,11 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header' => '操作',
                 'template' => '{update} {edit-role}',
                 'buttons' => [
-                        'edit-role' => function ($url,$model,$key) {
+                        'edit-role' => function ($url,$model) {
                             $option = [
-                                'title' => '角色设置',
+                                'rabc/users',
+                                'uid' => $model->id,
                             ];
-//                            return Html::;
+                            return Html::a('<span class="glyphicon glyphicon-cog"></span>',$option);
                         }
                 ]
             ],

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SysUser */
 
-$this->title = 'Update Sys User: {nameAttribute}';
-$this->params['breadcrumbs'][] = ['label' => 'Sys Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->title = '编辑系统用户';
+$this->params['breadcrumbs'][] = ['label' => '系统用户', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->username, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="sys-user-update">
