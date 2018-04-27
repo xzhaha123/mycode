@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 
 /**
  * SkillController implements the CRUD actions for Skill model.
+ * 技能模块
  */
 class SkillController extends Controller
 {
@@ -41,6 +42,7 @@ class SkillController extends Controller
 
     /**
      * Lists all Skill models.
+     * @desc 技能首页
      * @return mixed
      */
     public function actionIndex()
@@ -56,6 +58,7 @@ class SkillController extends Controller
 
     /**
      * Displays a single Skill model.
+     * @desc 技能详情
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -70,6 +73,7 @@ class SkillController extends Controller
     /**
      * Creates a new Skill model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @desc 添加技能
      * @return mixed
      */
     public function actionCreate()
@@ -88,6 +92,7 @@ class SkillController extends Controller
     /**
      * Updates an existing Skill model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @desc 更新技能
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -108,6 +113,7 @@ class SkillController extends Controller
     /**
      * Deletes an existing Skill model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @desc 删除技能
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

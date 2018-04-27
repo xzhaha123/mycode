@@ -13,6 +13,7 @@ use yii\filters\AccessControl;
 
 /**
  * EquipController implements the CRUD actions for Equip model.
+ * @desc 物品模块
  */
 class EquipController extends Controller
 {
@@ -43,6 +44,7 @@ class EquipController extends Controller
     /**
      * Lists all Equip models.
      * @return mixed
+     * @desc 物品首页
      */
     public function actionIndex()
     {
@@ -57,6 +59,7 @@ class EquipController extends Controller
 
     /**
      * Displays a single Equip model.
+     * @desc 物品详情
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -71,6 +74,7 @@ class EquipController extends Controller
     /**
      * Creates a new Equip model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @desc 添加物品
      * @return mixed
      */
     public function actionCreate()
@@ -89,6 +93,7 @@ class EquipController extends Controller
     /**
      * Updates an existing Equip model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @desc 更新物品
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -115,6 +120,7 @@ class EquipController extends Controller
     /**
      * Deletes an existing Equip model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @desc 删除物品
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

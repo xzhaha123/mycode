@@ -10,6 +10,7 @@ use backend\models\SysLoginForm;
 
 /**
  * Site controller
+ * 后台站点模块
  */
 class SiteController extends Controller
 {
@@ -56,7 +57,7 @@ class SiteController extends Controller
 
     /**
      * Displays homepage.
-     *
+     * @desc 后台首页
      * @return string
      */
     public function actionIndex()
@@ -66,7 +67,7 @@ class SiteController extends Controller
 
     /**
      * Login action.
-     *
+     * @desc 登陆页面
      * @return string
      */
     public function actionLogin()
@@ -89,7 +90,7 @@ class SiteController extends Controller
 
     /**
      * Logout action.
-     *
+     * @desc 登出页面
      * @return string
      */
     public function actionLogout()

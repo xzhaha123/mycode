@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 
 /**
  * HeroController implements the CRUD actions for Hero model.
+ * @desc 英雄模块
  */
 class HeroController extends Controller
 {
@@ -41,6 +42,7 @@ class HeroController extends Controller
 
     /**
      * Lists all Hero models.
+     * @desc 英雄列表页
      * @return mixed
      */
     public function actionIndex()
@@ -56,6 +58,7 @@ class HeroController extends Controller
 
     /**
      * Displays a single Hero model.
+     * @desc 英雄详情页
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -70,6 +73,7 @@ class HeroController extends Controller
     /**
      * Creates a new Hero model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @desc 添加英雄
      * @return mixed
      */
     public function actionCreate()
@@ -88,6 +92,7 @@ class HeroController extends Controller
     /**
      * Updates an existing Hero model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @desc 编辑英雄
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -108,6 +113,7 @@ class HeroController extends Controller
     /**
      * Deletes an existing Hero model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @desc 删除英雄
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

@@ -12,6 +12,7 @@ use yii\filters\AccessControl;
 
 /**
  * SysUserController implements the CRUD actions for SysUser model.
+ * 后台用户模块
  */
 class SysuserController extends Controller
 {
@@ -41,6 +42,7 @@ class SysuserController extends Controller
 
     /**
      * Lists all SysUser models.
+     * @desc 后台用户首页
      * @return mixed
      */
     public function actionIndex()
@@ -55,6 +57,7 @@ class SysuserController extends Controller
 
     /**
      * Displays a single SysUser model.
+     * @desc 后台用户详情
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,6 +72,7 @@ class SysuserController extends Controller
     /**
      * Creates a new SysUser model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @desc 添加后台用户
      * @return mixed
      */
     public function actionCreate()
@@ -98,6 +102,7 @@ class SysuserController extends Controller
     /**
      * Updates an existing SysUser model.
      * If update is successful, the browser will be redirected to the 'view' page.
+     * @desc 更新后台用户
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -119,6 +124,7 @@ class SysuserController extends Controller
     /**
      * Deletes an existing SysUser model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @desc 删除后台用户
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
