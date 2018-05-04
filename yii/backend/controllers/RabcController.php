@@ -2,7 +2,8 @@
 
 namespace backend\controllers;
 
-use common\models\AuthItem;
+use backend\models\AuthAssignment;
+use backend\models\AuthItem;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -15,6 +16,7 @@ use ReflectionMethod;
 use ReflectionException;
 use ReflectionObject;
 use ReflectionProperty;
+use yii\base\InvalidConfigException;
 
 /**
  * SkillController implements the CRUD actions for Skill model.
@@ -46,9 +48,26 @@ class RabcController extends Controller
      */
     public function actionIndex()
     {
-        $data = AuthItem::find()->where('type=:type', [':type' => '1'])->all();
+        $model = new AuthItem();
+        if ($_POST) {//将权限分给角色
+            $auth = Yii::$app->authManager;
+            foreach ($_POST as $key => $value) {
+                if ($key == '_csrf-backend') continue;
+                $auth->removeChildren($auth->createRole($key));
+                if (!is_array($value)) continue;
+                foreach ($value as $v) {
+                    $items = ['role' => $key, 'permission' => $v];
+                    $parent = $auth->createRole($items['role']);
+                    $child = $auth->createPermission($items['permission']);
+                    $res = $auth->addChild($parent, $child);
+                    if (!$res) return $this->asJson('false');
+                }
+            }
+            Yii::$app->session->setFlash('success', '保存成功');
+            return $this->asJson('ok');
+        }
         return $this->render('index', [
-            'data' => $data
+            'model' => $model,
         ]);
     }
 
@@ -58,6 +77,11 @@ class RabcController extends Controller
     public function actionUsers()
     {
         $auth = Yii::$app->authManager;
+        $model = new AuthItem();
+        return $this->render('users',['model'=>$model]);
+        /**
+         * @imp 权限管理
+         */
 //        //创建权限
 //        $a = $auth->createPermission('测试权限');
 //        $a->description = '测试权限1';
@@ -93,7 +117,7 @@ class RabcController extends Controller
         $authItems = array();
         $authTask = array();
         $allItems = AuthItem::find()->where('type=2')->all();
-        $allItems = ArrayHelper::getColumn($allItems,'name');
+        $allItems = ArrayHelper::getColumn($allItems, 'name');
         while (($file = readdir($dirhandle)) != NULL) {
             if (is_dir($basePath . '/' . $file)) {
                 continue;
@@ -104,16 +128,16 @@ class RabcController extends Controller
                 $class = new $classname(1, $_classname);
                 $function = get_class_methods($class);
                 $classDesc = $this->getDescFromRefClass($classname);
-                foreach($function as $k => $v) {
-                    if (substr($v,0,6) == 'action' && $v!='actions') {
+                foreach ($function as $k => $v) {
+                    if (substr($v, 0, 6) == 'action' && $v != 'actions') {
                         $methodDesc = $this->getDescFromRefClassMethod($classname, $v);
-                        $itemName = strtolower($_classname.'_'.$v);
+                        $itemName = strtolower($_classname . '_' . $v);
                         $permission = $auth->createPermission($itemName);
                         $permission->description = $methodDesc;
-                        if (!in_array($itemName,$allItems)){
+                        if (!in_array($itemName, $allItems)) {
                             $auth->add($permission);
-                        }else{
-                            $auth->update($itemName,$permission);
+                        } else {
+                            $auth->update($itemName, $permission);
                         }
                     }
                 }

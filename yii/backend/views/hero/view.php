@@ -48,14 +48,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => '技能',
                 'format'=>'html',
                 'value' => function($data){
+                    $str = '';
                     if (is_array($data->skill)){
-                        $str = '';
                         foreach ($data->skill as $value){
                             $str .= '['.Html::a($value->name,['skill/view','id'=>$value->id]).']&nbsp;&nbsp;';
 
                         }
-                        return $str;
                     }
+                    return $str;
                 }
             ]
         ],

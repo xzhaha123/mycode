@@ -21,6 +21,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="js/jquery-2.2.3.min.js"></script>
     <?php $this->head() ?>
 </head>
 <body>
@@ -41,6 +42,7 @@ AppAsset::register($this);
         ['label' => '装备', 'url' => ['/equip/index']],
         ['label' => '技能', 'url' => ['/skill/index']],
         ['label' => '用户管理', 'url' => ['/sysuser/index']],
+        ['label' => '权限管理', 'url' => ['/rabc/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => '登陆', 'url' => ['/site/login']];

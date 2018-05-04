@@ -32,10 +32,10 @@ class Skill extends \common\models\Skill
     {
         return [
             'id' => 'ID',
-            'hero_id' => 'Hero ID',
+            'hero_id' => '英雄名称',//ID
             'level' => '等级',
-            'name' => '名称',
-            'description' => '描述',
+            'name' => '技能名称',
+            'description' => '技能描述',
             'damage' => '伤害',
             'mana' => '法力消耗',
             'pic' => '图片',
@@ -50,4 +50,11 @@ class Skill extends \common\models\Skill
          */
         return $this->hasOne(Hero::className(), ['id' => 'hero_id']);
     }
+
+    //获取全部英雄
+    public function getAllHeros()
+    {
+        return Hero::find()->all();
+    }
+
 }

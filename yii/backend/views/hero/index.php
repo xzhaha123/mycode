@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'id',
             'name',
-            'type',
+            [
+                'attribute' => 'type',
+                'value' => function($model){
+                    return $model->heroType[$model->type];
+                }
+            ],
             'str',
             'int',
             'dex',

@@ -23,6 +23,12 @@ use Yii;
  */
 class Hero extends \common\models\Hero
 {
+    public $heroType = [
+        '0' => '力量英雄',
+        '1' => '敏捷英雄',
+        '2' => '智力英雄',
+    ];
+
     /**
      * @inheritdoc
      */
@@ -58,5 +64,10 @@ class Hero extends \common\models\Hero
     public function getSkill()
     {
         return $this->hasMany(Skill::className(),['hero_id'=>'id'])->addGroupBy('name');//@imp根据名字合并
+    }
+
+    public function getSkills()
+    {
+        return $this->hasMany(Skill::className(),['hero_id'=>'id']);//不合并
     }
 }

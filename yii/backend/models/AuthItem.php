@@ -22,7 +22,7 @@ use Yii;
  * @property AuthItem[] $children
  * @property AuthItem[] $parents
  */
-class AuthItem extends \yii\db\ActiveRecord
+class AuthItem extends \common\models\AuthItem
 {
     /**
      * @inheritdoc
@@ -110,4 +110,15 @@ class AuthItem extends \yii\db\ActiveRecord
     {
         return $this->hasMany(AuthItem::className(), ['name' => 'parent'])->viaTable('auth_item_child', ['child' => 'name']);
     }
+
+    public function getItem()
+    {
+        return self::find()->where('type=2')->all();
+    }
+
+    public function getAuth()
+    {
+        return self::find()->where('type=1')->all();
+    }
+
 }

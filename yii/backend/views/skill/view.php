@@ -28,13 +28,56 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'hero_id',
-            'level',
+            [
+                'attribute' => 'hero_id',
+                'value' => function($model){
+                    return $model->hero->name;
+                }
+            ],
             'name',
             'description',
-            'damage',
-            'mana',
+            [
+                'attribute' => 'level',
+                'value' => function($model){
+                    $data = $model->hero;
+                    $str = '';
+                    if (is_array($data->skills)){
+                        foreach ($data->skills as $value){
+                            $str .= '/'.$value->level;
+                        }
+                        $str = substr($str,1);
+                    }
+                    return $str;
+                }
+            ],
+            [
+                'attribute' => 'damage',
+                'value' => function($model){
+                    $data = $model->hero;
+                    $str = '';
+                    if (is_array($data->skills)){
+                        foreach ($data->skills as $value){
+                            $str .= '/'.$value->damage;
+                        }
+                        $str = substr($str,1);
+                    }
+                    return $str;
+                }
+            ],
+            [
+                'attribute' => 'mana',
+                'value' => function($model){
+                    $data = $model->hero;
+                    $str = '';
+                    if (is_array($data->skills)){
+                        foreach ($data->skills as $value){
+                            $str .= '/'.$value->mana;
+                        }
+                        $str = substr($str,1);
+                    }
+                    return $str;
+                }
+            ],
         ],
     ]) ?>
 
