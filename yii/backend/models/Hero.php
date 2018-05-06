@@ -63,7 +63,7 @@ class Hero extends \common\models\Hero
 
     public function getSkill()
     {
-        return $this->hasMany(Skill::className(),['hero_id'=>'id'])->addGroupBy('name');//@imp根据名字合并
+        return $this->hasMany(Skill::className(),['hero_id'=>'id'])->addGroupBy('name');//@imp根据名字合并 mysql5.7以上需关闭only_full_group_by
     }
 
     public function getSkills()
