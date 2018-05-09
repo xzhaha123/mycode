@@ -59,14 +59,16 @@ class SkillController extends Controller
     /**
      * Displays a single Skill model.
      * @desc 技能详情
-     * @param integer $id
+     * @param $name
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($sname)
     {
+        $skill = $this->findModelByName($sname);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $skill[0],
+            'skill' => $skill,
         ]);
     }
 
@@ -138,6 +140,14 @@ class SkillController extends Controller
             return $model;
         }
 
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findModelByName($sname)
+    {
+        if (($model = Skill::find($sname)->where("name='$sname'")->all()) !== null) {
+            return $model;
+        }
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

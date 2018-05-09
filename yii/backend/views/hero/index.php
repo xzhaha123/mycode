@@ -29,13 +29,45 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'attribute' => 'type',
+                'format' => 'raw',
                 'value' => function($model){
-                    return $model->heroType[$model->type];
+                    switch ($model->type){
+                        case '0':
+                            $label_type = 'danger';
+                            break;
+                        case '1':
+                            $label_type = 'success';
+                            break;
+                        case '2':
+                            $label_type = 'info';
+                            break;
+                        default:
+                            $label_type = 'danger';
+                    }
+                    return '<span class="label label-'.$label_type.'">'.$model->heroType[$model->type].'</span>';
                 }
             ],
-            'str',
-            'int',
-            'dex',
+            [
+                'attribute' => 'str',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return '<span class="label label-danger">'.$model->str.'</span>';
+                }
+            ],
+            [
+                'attribute' => 'int',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return '<span class="label label-info">'.$model->int.'</span>';
+                }
+            ],
+            [
+                'attribute' => 'dex',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return '<span class="label label-success">'.$model->dex.'</span>';
+                }
+            ],
             'hp',
             'mp',
             'min_atk',
@@ -48,3 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+<!-- @imp 自定义区块（放置） -->
+<?php $this->beginBlock('javascript') ?>
+
+<?php $this->endBlock() ?>

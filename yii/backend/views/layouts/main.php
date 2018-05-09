@@ -82,5 +82,7 @@ AppAsset::register($this);
 
 <?php $this->endBody() ?>
 </body>
+<!-- @imp 自定义区块（设置） -->
+<?= $this->blocks['javascript'] ?>
 </html>
 <?php $this->endPage() ?>

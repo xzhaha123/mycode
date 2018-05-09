@@ -11,7 +11,6 @@ $this->title = 'Skills';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="skill-index">
-
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -35,13 +34,28 @@ $this->params['breadcrumbs'][] = $this->title;
 //                    'class' => 'form-control', 'id' => null
 //                ]),
             ],
-            'level',
+//            'level',
             'name',
             'description',
-            'damage',
-            'mana',
+//            'damage',
+//            'mana',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view}',
+                'header' => '操作',
+                'buttons' => [
+                    'view' => function ($url,$model) {
+                        $option = [
+                            'skill/view',
+                            'uid' => $model->id,
+                            'sname' => $model->name
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>',$option);
+                    }
+                ],
+//                'headerOptions' => [ 'width' => '50px' ]
+            ],
         ],
     ]); ?>
 </div>

@@ -50,6 +50,10 @@ class SkillSearch extends Skill
         $query->joinWith(['hero']);
         // add conditions that should always apply here
 
+        $query->distinct(true);
+
+        $query->groupBy('name');
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);

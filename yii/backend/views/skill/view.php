@@ -1,11 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use backend\components\widgets\SkillView;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Skill */
-
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Skills', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -15,18 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?= SkillView::widget([
         'model' => $model,
+        'skill' => $skill,
         'attributes' => [
             [
                 'attribute' => 'hero_id',
@@ -38,25 +30,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'description',
             [
                 'attribute' => 'level',
-                'value' => function($model){
-                    $data = $model->hero;
+                'value' => function($model,$skill){
                     $str = '';
-                    if (is_array($data->skills)){
-                        foreach ($data->skills as $value){
-                            $str .= '/'.$value->level;
+                    if (is_array($skill->skill)){
+                        foreach ($skill->skill as $value){
+                            $link = Html::a('[LV'.$value->level.']', ['update','id' => $value->id]);
+                            $str .= ' / ' . $link;
                         }
-                        $str = substr($str,1);
+                        $str = substr($str,2);
                     }
                     return $str;
                 }
             ],
             [
                 'attribute' => 'damage',
-                'value' => function($model){
-                    $data = $model->hero;
+                'value' => function($model,$skill){
                     $str = '';
-                    if (is_array($data->skills)){
-                        foreach ($data->skills as $value){
+                    if (is_array($skill->skill)){
+                        foreach ($skill->skill as $value){
                             $str .= '/'.$value->damage;
                         }
                         $str = substr($str,1);
@@ -66,11 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'mana',
-                'value' => function($model){
-                    $data = $model->hero;
+                'value' => function($model,$skill){
                     $str = '';
-                    if (is_array($data->skills)){
-                        foreach ($data->skills as $value){
+                    if (is_array($skill->skill)){
+                        foreach ($skill->skill as $value){
                             $str .= '/'.$value->mana;
                         }
                         $str = substr($str,1);
