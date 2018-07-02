@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equip */
@@ -12,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="equip-view">
 
-    <h1><img src="uploads/equip/<?= $model->pic ?>" height="35px"> <?= Html::encode($this->title) ?></h1>
+    <h1><img src="<?= Url::to('@web/uploads/equip/'.$model->pic) ?>" height="35px"> <?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

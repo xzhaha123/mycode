@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 'value' => function ($model) {
-                    return 'uploads/equip/'.$model->pic;
+                    return '@web/uploads/equip/'.$model->pic;
                 }
             ],
             'name',

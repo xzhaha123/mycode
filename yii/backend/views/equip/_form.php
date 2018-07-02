@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equip */
@@ -14,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?php if ($model->pic): ?>
 
-        <?= "<img src='uploads/equip/$model->pic' width='100px'>" ?>
+        <img src='<?= Url::to("@web/uploads/equip/$model->pic") ?>' width='100px'>
 
     <?php endif; ?>
     <?= $form->field($model, 'pic')->fileInput() ?>

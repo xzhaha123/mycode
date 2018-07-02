@@ -38,14 +38,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<action:\w+>/<page:\d+>' => '<controller>/<action>',
+                "<controller:\w+>/<action:\w+>"=>"<controller>/<action>",
             ],
         ],
-        */
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             "defaultRoles" => ["guest"],
