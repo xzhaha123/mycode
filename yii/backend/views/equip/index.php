@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]
                 ],
                 'value' => function ($model) {
-                    return '@web/uploads/equip/'.$model->pic;
+                    return '@web/uploads/equip/'.$model->pic;//  @imp 也可以写作 /uploads/equip/'.$model->pic 需要配置虚拟主机
                 }
             ],
             'name',
