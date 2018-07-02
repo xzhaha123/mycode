@@ -2,13 +2,13 @@
 
 namespace backend\controllers;
 
-use Yii;
 use backend\models\Hero;
 use backend\models\HeroSearch;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * HeroController implements the CRUD actions for Hero model.
@@ -139,5 +139,22 @@ class HeroController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * @throws \yii\db\Exception
+     * @desc 测试读写分离
+     */
+    public function actionTest()
+    {
+        var_dump(Yii::$app->db);exit;
+        $rows = Yii::$app->db->createCommand('SELECT * FROM gift LIMIT 10')->queryAll();
+        $update = Yii::$app->db->createCommand('update gift set hero_id=999 WHERE id=1')->execute();
+
+        // @imp 强制主库执行
+        $rows = Yii::$app->db->useMaster(function ($db) {
+            return $db->createCommand('SELECT * FROM gift LIMIT 10')->queryAll();
+        });
+        var_dump($rows);
     }
 }
